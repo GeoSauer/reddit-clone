@@ -39,9 +39,16 @@ body {
 }
 
 .page-header .title {
+    font-size: 2em;
+    font-weight: 400;
+    flex-grow: 2;
+}
+
+.page-header .header-title {
     font-size: 1.3em;
     font-weight: 800;
-    flex-grow: 2;
+    /* flex-grow: 2; */
+    align-items: center;
 }
 
 .page-header nav {
