@@ -6,6 +6,27 @@ If you work on more than one feature at a time, you are guaranteed to multiply y
 
 ## Making a plan
 
+![wireframe](./assets/.wireframe.png)
+
+-state-
+error
+posts
+post
+
+-events-
+page load
+submit post form
+add comment
+stretch goal, submit image
+
+-elements-
+
+<p>for error display
+<ul>for posts display, for comments display
+<form>for creating posts, for creating comments
+<label><div><input>combo for each part of form
+<section>for individual post
+
 1. **Make a drawing of your app. Simple "wireframes"**
 1. **Once you have a drawing, name the HTML elements you'll need to realize your vision**
 1. **For each HTML element ask: Why do I need this?**
