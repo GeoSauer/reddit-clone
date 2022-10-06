@@ -1,14 +1,19 @@
 import '../auth/user.js';
 
 import { getPost } from '../fetch-utils.js';
+import { renderComment } from '../render-utils.js';
 
 const errorDisplay = document.getElementById('error-display');
 const postTitle = document.getElementById('post-title');
 const postImage = document.getElementById('post-image');
 const postContent = document.getElementById('post-content');
+const addCommentForm = document.getElementById('add-comment-form');
+const commentList = document.getElementById('comment-list');
+const addCommentButton = addCommentForm.querySelector('button');
 
 let error = null;
 let post = null;
+let comments = [];
 
 window.addEventListener('load', async () => {
     const searchParams = new URLSearchParams(location.search);
@@ -29,6 +34,31 @@ window.addEventListener('load', async () => {
         location.assign('/');
     } else {
         displayPost();
+        displayComments();
+    }
+});
+
+addCommentForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    addCommentButton.disabled = true;
+
+    const formData = new FormData(addCommentForm);
+    const comment = {
+        post_id: post.id,
+        text: formData.get('text'),
+    };
+    // const response = await createComment(commentInsert);
+    // error = response.error;
+    // const comment = response.data;
+    addCommentButton.disabled = false;
+
+    if (error) {
+        displayError();
+    } else {
+        post.comments.unshift(comment);
+        displayComments();
+
+        addCommentForm.reset();
     }
 });
 
@@ -44,7 +74,16 @@ function displayError() {
 
 function displayPost() {
     postTitle.textContent = post.title;
+    postContent.textContent = post.content;
     postImage.src = post.image_url;
     postImage.alt = `${post.title} image`;
-    postContent.textContent = post.content;
+}
+
+function displayComments() {
+    commentList.innerHTML = '';
+
+    for (const comment of post.comments) {
+        const commentEl = renderComment(comment);
+        commentList.append(commentEl);
+    }
 }
