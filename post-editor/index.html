@@ -34,13 +34,37 @@
         <header class="page-header">
             <img class="logo" src="../assets/reddit.png" alt="logo" />
             <p class="title">-ish</p>
-            <p class="header--title">Create Post</p>
+            <p class="header-title">Create A Post</p>
             <nav>
                 <a href="/">Home</a>
                 <a id="sign-out-link" href="auth">Sign Out</a>
             </nav>
         </header>
 
-        <main></main>
+        <main>
+            <form id="post-form">
+                <label>
+                    <div>Title</div>
+                    <input name="title" placeholder="Title of your post" required />
+                </label>
+                <label>
+                    <div>Content</div>
+                    <input name="content" placeholder="Content of your post" required />
+                </label>
+                <label>
+                    <div>Photo</div>
+                    <input id="image-input" name="image" type="file" placeholder="" />
+                </label>
+                <img
+                    id="preview"
+                    class="preview"
+                    alt="photo preview"
+                    src="../assets/placeholder.jpeg"
+                />
+                <button>Add Post</button>
+
+                <p id="error-display"></p>
+            </form>
+        </main>
     </body>
 </html>

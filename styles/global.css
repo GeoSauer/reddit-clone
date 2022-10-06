@@ -47,8 +47,7 @@ body {
 .page-header .header-title {
     font-size: 1.3em;
     font-weight: 800;
-    /* flex-grow: 2; */
-    align-items: center;
+    flex-grow: 2;
 }
 
 .page-header nav {
