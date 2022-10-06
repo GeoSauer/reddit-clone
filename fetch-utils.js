@@ -36,6 +36,10 @@ export async function getPosts() {
     return await client.from('posts').select('*');
 }
 
+export async function getPost(id) {
+    return await client.from('posts').select('*').eq('id', id).single();
+}
+
 export async function uploadImage(bucketName, imagePath, imageFile) {
     const bucket = client.storage.from(bucketName);
 
