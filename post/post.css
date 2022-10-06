@@ -4,7 +4,7 @@ main {
     gap: 10px;
 }
 
-.pet-summary {
+.post-summary {
     display: grid;
     grid-template-columns: 120px 1fr;
     grid-template-rows: 30px 60px;
@@ -17,20 +17,20 @@ main {
     box-shadow: var(--box-shadow);
 }
 
-#pet-name {
+#post-name {
     grid-area: name;
     margin: 0;
     align-self: center;
 }
 
-#pet-image {
+#post-image {
     grid-area: image;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-#pet-bio {
+#post-bio {
     grid-area: bio;
     margin: 0;
 }
