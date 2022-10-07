@@ -8,11 +8,11 @@
 
         <!-- title and favicon -->
         <title>Reddish</title>
-        <link rel="icon" type="image/x-icon" href="/assets/reddit-favicon.png" />
+        <link rel="icon" type="image/x-icon" href="../assets/reddit-favicon.png" />
 
         <!-- js -->
         <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-        <script type="module" src="app.js"></script>
+        <script type="module" src="post.js"></script>
 
         <!-- fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,41 +25,40 @@
         <!-- css -->
         <link rel="stylesheet" href="/styles/reset.css" />
         <link rel="stylesheet" href="/styles/global.css" />
-        <link rel="stylesheet" href="/styles/posts.css" />
+        <link rel="stylesheet" href="post.css" />
         <!-- add link for page specific css -->
     </head>
 
     <body>
         <header class="page-header">
-            <img class="logo" src="/assets/reddit.png" alt="logo" />
+            <img class="logo" src="../assets/reddit.png" alt="logo" />
             <p class="title">-ish</p>
-            <p class="header-title">Home</p>
             <nav>
-                <a href="/post-editor/">Add Post</a>
-                <a id="sign-out-link" href="auth">Sign Out</a>
+                <a href="/">Home</a>
+                <a id="sign-out-link" href="../auth/">Sign Out</a>
             </nav>
         </header>
 
         <main>
+            <section class="post-summary">
+                <h1 id="post-title">Look at this post</h1>
+                <img id="post-image" src="../assets/placeholder.jpeg" alt="placeholder" />
+                <p id="post-content">Mm mm so dang delicious</p>
+            </section>
+
             <p id="error-display" class="error"></p>
-            <ul id="post-list">
-                <li>
-                    <h2>This is a post</h2>
-                    <img src="/assets/placeholder.jpeg" alt="placeholder" />
-                    <p>This is the content of the post</p>
-                </li>
-                <li>
-                    <h2>This is a post</h2>
-                    <img src="/assets/placeholder.jpeg" alt="placeholder" />
 
-                    <p>This is the content of the post</p>
-                </li>
-                <li>
-                    <h2>This is a post</h2>
-                    <img src="/assets/placeholder.jpeg" alt="placeholder" />
+            <div>
+                <form id="add-comment-form" class="inline">
+                    <input name="text" placeholer="add a comment" />
+                    <button>Submit</button>
+                </form>
+            </div>
 
-                    <p>This is the content of the post</p>
-                </li>
+            <ul id="comment-list">
+                <li>comment</li>
+                <li>rude comment</li>
+                <li>deleted</li>
             </ul>
         </main>
     </body>
