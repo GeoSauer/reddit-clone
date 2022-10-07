@@ -1,6 +1,6 @@
 import '../auth/user.js';
 
-import { getPost } from '../fetch-utils.js';
+import { getPost, createComment } from '../fetch-utils.js';
 import { renderComment } from '../render-utils.js';
 
 const errorDisplay = document.getElementById('error-display');
@@ -13,7 +13,6 @@ const addCommentButton = addCommentForm.querySelector('button');
 
 let error = null;
 let post = null;
-let comments = [];
 
 window.addEventListener('load', async () => {
     const searchParams = new URLSearchParams(location.search);
@@ -26,7 +25,6 @@ window.addEventListener('load', async () => {
     const response = await getPost(id);
     error = response.error;
     post = response.data;
-
     if (error) {
         displayError();
     }
@@ -43,19 +41,19 @@ addCommentForm.addEventListener('submit', async (e) => {
     addCommentButton.disabled = true;
 
     const formData = new FormData(addCommentForm);
-    const comment = {
+    const commentInsert = {
         post_id: post.id,
         text: formData.get('text'),
     };
-    // const response = await createComment(commentInsert);
-    // error = response.error;
-    // const comment = response.data;
+    const response = await createComment(commentInsert);
+    error = response.error;
+    const comment = response.data;
     addCommentButton.disabled = false;
 
     if (error) {
         displayError();
     } else {
-        post.comments.unshift(comment);
+        post.commentses.unshift(comment);
         displayComments();
 
         addCommentForm.reset();
@@ -81,8 +79,7 @@ function displayPost() {
 
 function displayComments() {
     commentList.innerHTML = '';
-
-    for (const comment of post.comments) {
+    for (const comment of post.commentses) {
         const commentEl = renderComment(comment);
         commentList.append(commentEl);
     }

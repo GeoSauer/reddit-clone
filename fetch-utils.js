@@ -36,12 +36,17 @@ export async function getPosts() {
     return await client.from('posts').select('*');
 }
 
-// export async function createComment(comment) {
-//     return await client.from('commentses').insert(comment).single();
-// }
+export async function createComment(comment) {
+    return await client.from('commentses').insert(comment).single();
+}
 
 export async function getPost(id) {
-    return await client.from('posts').select(`*, comments(*)`).eq('id', id).single();
+    return await client
+        .from('posts')
+        .select(`*, commentses (*)`)
+        .eq('id', id)
+        .order('created_at', { foreignTable: 'commentses', ascending: false })
+        .single();
 }
 
 export async function uploadImage(bucketName, imagePath, imageFile) {
